@@ -1,0 +1,65 @@
+{% extends 'admbase.html' %}
+{% load static %}
+{% block body %}
+
+<script>
+	function checkpassword() {
+		if(document.changepass.npass.value!= document.changepass.cpass.value)
+		{
+			alert('ERROR')
+			document.changepass.cpass.focus();
+			return false;
+		}
+		return true;
+	}
+</script>
+
+
+<div class="row">
+	<div class="col-sm-8 mx-auto">
+		<div class="card shadow m-5">
+			<div class="card-body">
+				<h5 class="p-2" style="border-bottom: 2px solid black;">Change Password</h5>
+				<br>
+				<form method="post" name="changepass" onsubmit="checkpassword()">
+				{% csrf_token %}
+				<div class="form-group">
+				<label>Current Password:</label>
+				<input type="password" name="curpass" class="form-control" required>
+				</div>
+				<div class="form-group">
+				<label>New Password:</label>
+				<input type="password" name="npass" class="form-control" required>
+				</div>
+				<div class="form-group">
+				<label>Confirm Password:</label>
+				<input type="password" name="cpass" class="form-control" required>
+				</div>
+				<input type="submit" value="Change Password" class="btn btn-primary btn-sm">
+				</form>		
+			</div>			
+		</div>
+	</div>
+</div>
+
+{% if error == "no" %}
+<script>
+	alert('Successful');
+	window.location=('{% url 'Logout' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+	alert('ERROR');
+</script>
+{% endif %}
+
+{% if error == "not" %}
+<script>
+	alert('Current Pass ERROR');
+</script>
+{% endif %}
+
+
+{% endblock %}

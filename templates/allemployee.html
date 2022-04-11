@@ -1,0 +1,52 @@
+{% extends 'admbase.html' %}
+    {% block body %}
+
+
+
+    <h4 class="text-danger p-2" style="border-bottom: 2px solid;">Employee Details</h4>
+
+    <div class="row text-center">
+    	<div class="col-sm-12 p-2">
+    		<div class="card shadow">
+
+    			<div class="container-fluid pt-4">
+                    <table class="table table-hover table-bordered" id="example">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>SNo.</th>
+                                <th>Emp_code</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email ID</th>
+                                <th>Contact No</th>
+                                <th>Reg Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in employee %}
+
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{i.empcode}}</td>
+                                <td>{{i.user.first_name}}</td>
+                                <td>{{i.user.last_name}}</td>
+                                <td>{{i.user.username}}</td>
+                                <td>{{i.contact}}</td>
+                                <td>{{i.joiningdate}}</td>
+                                <td> <a href="{% url 'editprofileadm' i.id %}" class="text-primary">Edit Profile</a><br><a href="{% url 'editeducationadm' i.user.id %}" class="text-primary">Edit Edu</a><br><a href="{% url 'editexperienceadm' i.user.id %}" class="text-primary">Edit Exp</a><br><a href="{% url 'deleteemp' i.user.id %}" class="text-danger" onclick="return confirm('Are Sure!!')">Delete</a> </td>
+
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+    				
+   				
+    			</div>
+    		</div>
+    	</div>
+    </div>
+
+
+    {% endblock %}

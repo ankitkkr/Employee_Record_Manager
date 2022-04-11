@@ -1,0 +1,41 @@
+{% extends 'nav.html' %}
+{% load static %}
+{% block body %}
+<div class="row">
+	<div class="col-sm-6 mx-auto">
+		<div class="card shadow m-5">
+			<div class="card-body">
+				<h5 class="p-2 text-center" style="border-bottom: 2px solid black;">Employee Login</h5>
+				<br>
+				<form method="post">
+				{% csrf_token %}
+				<div class="form-group">
+				<label>Email Id:</label>
+				<input type="email" name="mail" class="form-control" required>
+				</div>
+				<div class="form-group">
+				<label>Password:</label>
+				<input type="password" name="emppass" class="form-control" required>
+				</div>
+				<input type="submit" value="Login" class="btn btn-primary">
+				</form>		
+			</div>			
+		</div>
+	</div>
+</div>
+
+{% if error == "no" %}
+<script>
+	alert('Successful');
+	window.location=('{% url 'emphome' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+	alert('ERROR');
+</script>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'admbase.html' %}
+{% load static %}
+{% block body %}
+<div class="row">
+<div class="col-sm-12 mx-auto">	
+<div class="card shadow m-2">
+	<div class="card-body">
+		<h5 class="p-2" style="border-bottom: 2px solid black;">Edit Profile</h5>
+
+		<div class="container-fluid">
+			<form method="post" name="signup" onsubmit="return checkpassword()">
+				{% csrf_token %}
+				<div class="form-row mb-4">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>First Name</label>
+							<input type="text" name="fname" class="form-control" value="{{employee.user.first_name}}">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Last Name</label>
+							<input type="text" name="lname" class="form-control" value="{{employee.user.last_name}}">
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>Employee Code</label>
+							<input type="text" name="empcode" class="form-control" value="{{employee.empcode}}">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Email Id</label>
+							<input type="email" name="email" class="form-control" value="{{employee.user.username}}">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Contact No.</label>
+							<input type="text" name="contact" class="form-control" value="{{employee.contact}}">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Employee Department:.</label>
+							<input type="text" name="department" class="form-control" value="{{employee.empdept}}">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Employee Designation:</label>
+							<input type="text" name="designation" class="form-control" value="{{employee.designation}}">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Joining Date [{{employee.joiningdate}}]</label>
+							<input type="date" name="jdate" class="form-control">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Gender [{{employee.gender}}]</label>
+							<select name="gender" class="form-control">
+								<option value="None">Select Gender</option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+							</select>
+						</div>
+					</div>
+					<br>
+					
+				</div>
+				<input type="submit" name="submit" class="btn btn-primary">
+				
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+
+{% if error == "no" %}
+<script>
+	alert('Successful');
+	window.location=('{% url 'editprofileadm' employee.id %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+	alert('ERROR');
+</script>
+{% endif %}
+{% endblock %}

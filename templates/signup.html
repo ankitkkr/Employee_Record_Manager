@@ -1,0 +1,94 @@
+{% extends 'nav.html' %}
+{% load static %}
+{% block body %}
+
+
+<script>
+	function checkpassword() {
+		if(document.signup.pass.value!= document.signup.cpw.value)
+		{
+			alert('ERROR')
+			document.signup.cpw.focus();
+			return false;
+		}
+		return true;
+	}
+</script>
+
+<div class="row">
+<div class="col-sm-8 mx-auto">	
+<div class="card shadow m-5">
+	<div class="card-body">
+		<h5 class="p-2" style="border-bottom: 2px solid black;">Create An Account</h5>
+
+		<div class="container-fluid">
+			<form method="post" name="signup" onsubmit="return checkpassword()">
+				{% csrf_token %}
+				<div class="form-row mb-4">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>First Name</label>
+							<input type="text" name="fname" class="form-control" required>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Last Name</label>
+							<input type="text" name="lname" class="form-control" required>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>Employee Code</label>
+							<input type="text" name="empcode" class="form-control" required>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Email Id</label>
+							<input type="email" name="email" class="form-control" required>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Contact No.</label>
+							<input type="text" name="contact" class="form-control" required>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Password</label>
+							<input type="password" name="pass" class="form-control" required>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Confirm Password</label>
+							<input type="password" name="cpw" class="form-control" required>
+						</div>
+					</div>
+					<br>
+					
+				</div>
+				<input type="submit" name="submit" class="btn btn-primary">
+				
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+
+{% if error == "no" %}
+<script>
+	alert('Successful');
+	window.location=('{% url 'emplogin' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+	alert('ERROR');
+</script>
+{% endif %}
+{% endblock %}
