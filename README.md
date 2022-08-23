@@ -4,10 +4,12 @@ The purpose of this project is to help maintain the database record of all the e
 
 
 ## Software Requirements
+
 Frontent
  - HTML
  - CSS
  - JavaScript
+
 Backend
  - Django
  - SQLite
