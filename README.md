@@ -32,4 +32,4 @@ For Employee Record Management System, the process model suitable is Iterative W
 	5.  Integration & System testing
 	6.  Maintenance 
 
-![software-engineering-iterative-waterfall-model](https://media.geeksforgeeks.org/wp-content/uploads/Screenshot-2-5.png)
+![software-engineering-iterative-waterfall-model](https://user.oc-static.com/upload/2018/02/22/1519294269929_Waterfall.png)
